@@ -11,19 +11,17 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class PracticeFormTest {
-
-    public WebDriver driver;
+public class PracticeFormTest extends BaseTest{
 
     @Test
     public void practiceFormTest(){
 
-        driver = new ChromeDriver();
-        // Navigam catre pagina website-ului
-        driver.get("https://demoqa.com/");
-
-        // Facem fereastra browser-ului maxima
-        driver.manage().window().maximize();
+//        driver = new ChromeDriver();
+//        // Navigam catre pagina website-ului
+//        driver.get("https://demoqa.com/");
+//
+//        // Facem fereastra browser-ului maxima
+//        driver.manage().window().maximize();
 
         // Identificam meniul dorit si facem click pe el
         WebElement FromMenu = driver.findElement(By.xpath("//h5[text()='Forms']"));

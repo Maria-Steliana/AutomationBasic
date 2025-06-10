@@ -10,9 +10,8 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class WebTableTest {
+public class WebTableTest extends BaseTest{
 
-    WebDriver driver;
     public int initialTableSize = 0;
     String firstName = "Maria-Steliana";
     String lastName = "Carlan";
@@ -34,11 +33,11 @@ public class WebTableTest {
     }
 
     // Metoda care deschide browserul
-    public void openBrowser(){
-        driver = new ChromeDriver(); // Navigam catre pagina website-ului
-        driver.get("https://demoqa.com/"); // Facem fereastra browser-ului maxima
-        driver.manage().window().maximize(); // Facem fereastra maxima
-    }
+//    public void openBrowser(){
+//        driver = new ChromeDriver(); // Navigam catre pagina website-ului
+//        driver.get("https://demoqa.com/"); // Facem fereastra browser-ului maxima
+//        driver.manage().window().maximize(); // Facem fereastra maxima
+//    }
 
     // Identificam meniul dorit si facem click pe el
     public void choseMenu(){
