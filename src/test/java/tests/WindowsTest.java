@@ -1,3 +1,5 @@
+package tests;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -5,17 +7,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tests.BaseTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WindowsTest {
+public class WindowsTest extends BaseTest {
 
-    WebDriver driver;
 
     @Test
     public void WindowsTest(){
-        openBrowser();
         choseMenu();
         choseSubMenu();
         interactWithNewTab();
@@ -25,11 +26,11 @@ public class WindowsTest {
     }
 
     // Metoda care deschide browserul
-    public void openBrowser(){
-        driver = new ChromeDriver(); // Navigam catre pagina website-ului
-        driver.get("https://demoqa.com/");
-        driver.manage().window().maximize(); // Facem fereastra maxima
-    }
+//    public void openBrowser(){
+//        driver = new ChromeDriver(); // Navigam catre pagina website-ului
+//        driver.get("https://demoqa.com/");
+//        driver.manage().window().maximize(); // Facem fereastra maxima
+//    }
 
     // Identificam meniul dorit si facem click pe el
     public void choseMenu(){

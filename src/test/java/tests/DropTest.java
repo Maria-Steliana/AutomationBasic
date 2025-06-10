@@ -14,13 +14,10 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class DropTest {
-
-    WebDriver driver;
+public class DropTest extends BaseTest{
 
     @Test
     public void DropTest(){
-        openBrowser();
         choseMenu();
         choseSubMenu();
         pickAndDropElement();
@@ -30,11 +27,11 @@ public class DropTest {
     }
 
     // Metoda care deschide browserul
-    public void openBrowser(){
-        driver = new ChromeDriver(); // Navigam catre pagina website-ului
-        driver.get("https://demoqa.com/");
-        driver.manage().window().maximize(); // Facem fereastra maxima
-    }
+//    public void openBrowser(){
+//        driver = new ChromeDriver(); // Navigam catre pagina website-ului
+//        driver.get("https://demoqa.com/");
+//        driver.manage().window().maximize(); // Facem fereastra maxima
+//    }
 
     // Identificam meniul dorit si facem click pe el
     public void choseMenu(){

@@ -8,13 +8,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class FramesTest {
-
-    WebDriver driver;
+public class FramesTest extends BaseTest{
 
     @Test
     public void FramesTest(){
-        openBrowser();
         choseMenu();
         choseSubMenu();
         interactWithFrameOne();
@@ -24,11 +21,11 @@ public class FramesTest {
     }
 
     // Metoda care deschide browserul
-    public void openBrowser(){
-        driver = new ChromeDriver(); // Navigam catre pagina website-ului
-        driver.get("https://demoqa.com/");
-        driver.manage().window().maximize(); // Facem fereastra maxima
-    }
+//    public void openBrowser(){
+//        driver = new ChromeDriver(); // Navigam catre pagina website-ului
+//        driver.get("https://demoqa.com/");
+//        driver.manage().window().maximize(); // Facem fereastra maxima
+//    }
 
     // Identificam meniul dorit si facem click pe el
     public void choseMenu(){
