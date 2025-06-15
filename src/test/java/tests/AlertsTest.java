@@ -44,6 +44,8 @@ public class AlertsTest extends BaseTest{
 //        driver.manage().window().maximize(); // Facem fereastra maxima
 //    }
 
+
+
 }
 
 
