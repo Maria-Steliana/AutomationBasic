@@ -7,65 +7,82 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.CommonPage;
+import pages.FramesPage;
+import pages.HomePage;
 
-public class FramesTest extends BaseTest{
+import static constants.MenuConstants.ALERTS_FRAMES_WINDOWS_MENU;
+import static constants.SubMenuConstants.FRAME_SUBMENU;
+
+public class FramesTest extends BaseTest {
 
     @Test
-    public void FramesTest(){
-        choseMenu();
-        choseSubMenu();
-        interactWithFrameOne();
-        interactWithFrameTwo();
-        //closeBrowser();
-
+    public void framesTest() {
+        HomePage homePage= new HomePage(driver);
+        homePage.isPageLoaded();
+        homePage.goToDesiredMenu(ALERTS_FRAMES_WINDOWS_MENU);
+        CommonPage commonPage=new CommonPage(driver);
+        commonPage.isPageLoaded();
+        commonPage.goToDesiredSubMenu(FRAME_SUBMENU);
+        FramesPage framesPage=new FramesPage(driver);
+        framesPage.isPageLoaded();
+        framesPage.interactWithFrameOne();
+        framesPage.interactWithFrameTwo();
     }
 
-    // Metoda care deschide browserul
-//    public void openBrowser(){
-//        driver = new ChromeDriver(); // Navigam catre pagina website-ului
+    //facem o metoda care deschide un browser;
+//    public void openBrowser() {
+//        driver = new ChromeDriver();
+//        // navigam catre pagine website-ului
 //        driver.get("https://demoqa.com/");
-//        driver.manage().window().maximize(); // Facem fereastra maxima
+//        //facem fereastra browser-ului maximize
+//        driver.manage().window().maximize();
+//    }
+    //facem o metoda care alege un meniu;
+
+//    public void chooseMenu() {
+//        //identificam meniul dorit si facem click pe el;
+//        WebElement alertsWindowsAndFramesMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
+//        //actionam butonul pe meniul de mai sus;
+//        // facem scroll pana in dreptul elementului pe care vrem sa actionam;
+//        scrollIntoElement(alertsWindowsAndFramesMenu);
+//        alertsWindowsAndFramesMenu.click();
+//    }
+    //facem o metoda care sa faca scroll;
+
+//    public void scrollIntoElement(WebElement alertsMenu) {
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("arguments[0].scrollIntoView(true);", alertsMenu);
+//    }
+//
+//    //facem o metoda care sa selecteze submeniul;
+//    public void chooseSubMenu() {
+//        //identificam submeniul dorit si facem click pe el;
+//        WebElement alertsSubMenu = driver.findElement(By.xpath("//span[text()='Frames']"));
+//        alertsSubMenu.click();
 //    }
 
-    // Identificam meniul dorit si facem click pe el
-    public void choseMenu(){
-        WebElement alertsWindowsAndFramesMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        scrollToElement(alertsWindowsAndFramesMenu);
-        alertsWindowsAndFramesMenu.click(); // Actionam butonul din meniul de mai sus
-    }
-
-    // Facem o metoda care sa faca scroll
-    public void scrollToElement(WebElement element){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
-    // Indendificam submeniul dorit si facem click pe el
-    public void choseSubMenu(){
-        WebElement alertsSubMenu = driver.findElement(By.xpath("//span[text()='Frames']"));
-        alertsSubMenu.click();
-    }
-
-    public void closeBrowser(){
-        driver.quit();
-    }
-
-    public void interactWithFrameOne(){
-        WebElement frameOneElement = driver.findElement(By.id("frame1"));
-        driver.switchTo().frame(frameOneElement);
-        WebElement frameOneTextValue = driver.findElement(By.id("sampleHeading"));
-        String expectedText = "This is a sample page";
-        Assert.assertEquals(frameOneTextValue.getText(),expectedText, "Text is not displayed properly.");
-        System.out.println("Frame1 text is: " + frameOneTextValue.getText());
-        driver.switchTo().defaultContent();
-    }
-
-    public void interactWithFrameTwo(){
-        WebElement frameTwoElement = driver.findElement(By.id("frame1"));
-        driver.switchTo().frame(frameTwoElement);
-        WebElement frameTwoTextValue = driver.findElement(By.id("sampleHeading"));
-        String expectedText = "This is a sample page";
-        Assert.assertEquals(frameTwoTextValue.getText(),expectedText, "Text is not displayed properly.");
-        System.out.println("Frame2 text is: " + frameTwoTextValue.getText());
-    }
+//    public void closeBrowser() {
+//        driver.quit();
+//    }
+//    public void interactWithFrameOne(){
+//        WebElement frameOneElement= driver.findElement(By.id("frame1"));
+//        //schimbare de focus pe frame(prima pagina);
+//        driver.switchTo().frame(frameOneElement);
+//        WebElement frameOneTextValue = driver.findElement(By.id("sampleHeading"));
+//        String expectedText = "This is a sample page";
+//        Assert.assertEquals(frameOneTextValue.getText(), expectedText, "Text is not displayed properly");
+//        System.out.println("Frame one text is: " + frameOneTextValue.getText());
+//        driver.switchTo().defaultContent(); //shimbam focusul pe pagina initiala;
+//    }
+//    public void interactWithFrameTwo(){
+//        WebElement frameTwoElement= driver.findElement(By.id("frame2"));
+//        //schimbare de focus pe frame(prima pagina);
+//        driver.switchTo().frame(frameTwoElement);
+//        WebElement frameTwoTextValue = driver.findElement(By.id("sampleHeading"));
+//        String expectedText = "This is a sample page";
+//        Assert.assertEquals(frameTwoTextValue.getText(), expectedText, "Text is not displayed properly");
+//        System.out.println("Frame two text is: " + frameTwoTextValue.getText());
+//        driver.switchTo().defaultContent(); //shimbam focusul pe pagina initiala;
+//    }
 }

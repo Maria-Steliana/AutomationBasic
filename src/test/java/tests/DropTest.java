@@ -5,71 +5,73 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.CommonPage;
+import pages.DroppablePage;
+import pages.HomePage;
 
-import java.time.Duration;
+import static constants.MenuConstants.INTERACTION_MENU;
+import static constants.SubMenuConstants.DROPPABLE_SUBMENU;
 
-public class DropTest extends BaseTest{
+public class DropTest extends BaseTest {
 
     @Test
-    public void DropTest(){
-        choseMenu();
-        choseSubMenu();
-        pickAndDropElement();
-
-        //closeBrowser();
-
+    public void droppableTest() {
+        HomePage homePage= new HomePage(driver);
+        homePage.isPageLoaded();
+        homePage.goToDesiredMenu(INTERACTION_MENU);
+        CommonPage commonPage=new CommonPage(driver);
+        commonPage.isPageLoaded();
+        commonPage.goToDesiredSubMenu(DROPPABLE_SUBMENU);
+        DroppablePage droppablePage=new DroppablePage(driver);
+        droppablePage.isPageLoaded();
+        droppablePage.pickAndDropElement();
     }
 
-    // Metoda care deschide browserul
-//    public void openBrowser(){
-//        driver = new ChromeDriver(); // Navigam catre pagina website-ului
+    //facem o metoda care deschide un browser;
+//    public void openBrowser() {
+//        driver = new ChromeDriver();
+//        // navigam catre pagine website-ului
 //        driver.get("https://demoqa.com/");
-//        driver.manage().window().maximize(); // Facem fereastra maxima
+//        //facem fereastra browser-ului maximize
+//        driver.manage().window().maximize();
 //    }
 
-    // Identificam meniul dorit si facem click pe el
-    public void choseMenu(){
-        WebElement interactionsMenu = driver.findElement(By.xpath("//h5[text()='Interactions']"));
-        scrollToElement(interactionsMenu);
-        interactionsMenu.click(); // Actionam butonul din meniul de mai sus
-    }
-
-    // Facem o metoda care sa faca scroll
-    public void scrollToElement(WebElement element){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
-    // Indendificam submeniul dorit si facem click pe el
-    public void choseSubMenu(){
-        WebElement droppableSubMenu = driver.findElement(By.xpath("//span[text()='Droppable']"));
-        droppableSubMenu.click();
-    }
-
-    public void closeBrowser(){
-        driver.quit();
-    }
-
-    public void pickAndDropElement() {
-        WebElement draggableElement = driver.findElement(By.id("draggable"));
-        WebElement droppableElement = driver.findElement(By.xpath("//div[@id='simpleDropContainer']//div[@id='droppable']"));
-        WebElement droppable = driver.findElement(By.id("droppable"));
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Textul din droppable după drop: '" + droppable.getText() + "'");
-        String initialTargetText = droppableElement.getText();
-        Actions action = new Actions(driver);
-        action.dragAndDrop(draggableElement, droppableElement).release().perform();//drag de la draggableElement pana la droppableElement, lasam + perform
-        Assert.assertNotEquals(droppableElement.getText(), initialTargetText, "Initial text is the same with actual text after element dropped");
-        System.out.println("Initial text is: " + initialTargetText + ". Text after successful drop: " + droppableElement.getText());
-    }
+    //facem o metoda care alege un meniu;
+//    public void chooseMenu() {
+//        //identificam meniul dorit si facem click pe el;
+//        WebElement alertsWindowsAndFramesMenu = driver.findElement(By.xpath("//h5[text()='Interactions']"));
+//        //actionam butonul pe meniul de mai sus;
+//        // facem scroll pana in dreptul elementului pe care vrem sa actionam;
+//        scrollIntoElement(alertsWindowsAndFramesMenu);
+//        alertsWindowsAndFramesMenu.click();
+//    }
+//    //facem o metoda care sa faca scroll;
+//
+//    public void scrollIntoElement(WebElement alertsMenu) {
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("arguments[0].scrollIntoView(true);", alertsMenu);
+//    }
+//
+//    //facem o metoda care sa selecteze submeniul;
+//    public void chooseSubMenu() {
+//        //identificam submeniul dorit si facem click pe el;
+//        WebElement alertsSubMenu = driver.findElement(By.xpath("//span[text()='Droppable']"));
+//        alertsSubMenu.click();
+//    }
+//    public void closeBrowser() {
+//        driver.quit();
+//    }
+//    public void pickAndDropElement(){
+//        WebElement draggableElement = driver.findElement(By.id("draggable"));
+//        WebElement droppableElement = driver.findElement(By.xpath("//div[@id='simpleDropContainer']//div[@id='droppable']"));
+//        String initialTargetText= droppableElement.getText(); //am salvat textul de pe element intr-un string;
+//        Actions action = new Actions(driver);
+//        //se ia elementul care se trage si se lasa in Element;
+//        action.dragAndDrop(draggableElement,droppableElement).release().perform();
+//        Assert.assertNotEquals(droppableElement.getText(),initialTargetText,"Initial text is the same with actual text after element dropped");
+//        System.out.println("Initial text is: " + initialTargetText + " Text after successful drop: " + droppableElement.getText());
+//    }
 }
