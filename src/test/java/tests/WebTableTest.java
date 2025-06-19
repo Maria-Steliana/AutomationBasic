@@ -10,8 +10,10 @@ import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.HomePage;
 import pages.WebTablePage;
+import propertyUtility.PropertyUtility;
 
 import java.util.List;
+import java.util.Map;
 
 import static constants.MenuConstants.ELEMENTS_MENU;
 import static constants.SubMenuConstants.WEB_TABLE_SUBMENU;
@@ -35,8 +37,10 @@ public class WebTableTest extends BaseTest {
         commonPage.isPageLoaded();
         commonPage.goToDesiredSubMenu(WEB_TABLE_SUBMENU);
         WebTablePage webTablePage=new WebTablePage(driver);
+        propertyUtility = new PropertyUtility("WebTableTest");
+        Map<String, Object> webTableEntryData = propertyUtility.getAllProperties();
         webTablePage.isPageLoaded();
-        webTablePage.webTablePageFlow();
+        webTablePage.webTablePageFlow(webTableEntryData);
 //        webTablePage.getTableSize();
 //        webTablePage.clickToAddNewRecord();
 //        webTablePage.fillFormValues();

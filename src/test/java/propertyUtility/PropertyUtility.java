@@ -2,9 +2,7 @@ package propertyUtility;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class PropertyUtility {
 
@@ -19,7 +17,8 @@ public class PropertyUtility {
     public void loadFile(String testName) {
         properties = new Properties();
         try {
-            FileInputStream fileInputStream = new FileInputStream("src/test/resources/inputData/" + testName + "Data.properties");
+            FileInputStream fileInputStream = new FileInputStream("src/test/resources/inputData/" + testName +
+                    "Data.properties");
             properties.load(fileInputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -39,6 +38,15 @@ public class PropertyUtility {
             allProperties.put(key, value);
         }
         return allProperties;
+    }
+
+    public List<String> getPropertyAsList(String key){
+        String value = getPropertyValue(key);
+        if(value != null && value.contains(",")){
+            return Arrays.asList(value.split(","));
+        }
+        assert value != null;
+        return new ArrayList<>(List.of(value));
     }
 
 }

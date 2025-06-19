@@ -8,10 +8,12 @@ import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.HomePage;
 import pages.PracticeFormPage;
+import propertyUtility.PropertyUtility;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static constants.MenuConstants.FORM_MENU;
 import static constants.SubMenuConstants.PRACTICE_FORM_SUBMENU;
@@ -29,11 +31,13 @@ public class PracticeFormTest extends BaseTest {
         commonPage.isPageLoaded();
         commonPage.goToDesiredSubMenu(PRACTICE_FORM_SUBMENU);
         PracticeFormPage practiceFormPage=new PracticeFormPage(driver);
+        propertyUtility = new PropertyUtility("PracticeFormTest");
+        Map<String, Object> PracticeFormData = propertyUtility.getAllProperties();
         practiceFormPage.isPageLoaded();
-        practiceFormPage.fillEntireForm();
-        practiceFormPage.getExpectedValues();
-        practiceFormPage.getActualValues();
-        practiceFormPage.validateThatExpectedValuesEqualActualValues();
+        practiceFormPage.fillEntireForm(PracticeFormData);
+//        practiceFormPage.getExpectedValues();
+//        practiceFormPage.getActualValues();
+        practiceFormPage.validateThatExpectedValuesEqualActualValues(PracticeFormData);
 
 
 //        driver = new ChromeDriver();

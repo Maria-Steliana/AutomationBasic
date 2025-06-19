@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.HomePage;
 import pages.WindowsPage;
+import propertyUtility.PropertyUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +29,10 @@ public class WindowsTest extends BaseTest {
         commonPage.isPageLoaded();
         commonPage.goToDesiredSubMenu(WINDOWS_SUBMENU);
         WindowsPage windowsPage=new WindowsPage(driver);
+        propertyUtility = new PropertyUtility("WindowsTest");
         windowsPage.isPageLoaded();
-        windowsPage.interactWithNewTab();
-        windowsPage.interactWithNewWindow();
+        windowsPage.interactWithNewTab(propertyUtility.getPropertyValue("expectedText"));
+        windowsPage.interactWithNewWindow(propertyUtility.getPropertyValue("expectedText"));
         windowsPage.interactWithNewMessageWindow();
     }
 
