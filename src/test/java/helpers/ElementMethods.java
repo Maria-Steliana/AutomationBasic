@@ -16,13 +16,13 @@ public class ElementMethods {
 
     public WebDriver driver;
     WebDriverWait wait;
-    JavascriptExecutor js;
+    public JavascriptExecutor js;
     Actions action;
 
     public ElementMethods(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        js = (JavascriptExecutor) driver;
+        this.js = (JavascriptExecutor) driver;
         action = new Actions(driver);
     }
 
@@ -98,7 +98,7 @@ public class ElementMethods {
     }
 
     public void pickAndDropElement(By actual, By next){
-        waitForElement(actual);
+        //waitForElement(actual);
         action.dragAndDrop(getElement(actual),getElement(next)).release().perform();
     }
 
@@ -118,4 +118,14 @@ public class ElementMethods {
         getElement(locator).sendKeys(file.getAbsolutePath());
 
     }
+
+//    public void setWait(Long miliSeconds){
+//        try {
+//            wait(miliSeconds);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
+
 }
