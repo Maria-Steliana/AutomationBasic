@@ -10,6 +10,10 @@ import org.testng.Assert;
 
 import java.time.Duration;
 
+import static extentUtility.ExtentHelper.logInfo;
+import static extentUtility.ReportEventType.INFO_STEP;
+import static extentUtility.ReportEventType.PASS_STEP;
+
 public class DroppablePage extends BasePage {
     //locatori specifici;
     private By pageTitle = By.xpath("//h1[@class]");
@@ -23,14 +27,18 @@ public class DroppablePage extends BasePage {
 
     @Override
     public void isPageLoaded() {
+        logInfo(PASS_STEP, "Validate that Droppable Page is loaded properly.");
         Assert.assertEquals(elementMethods.getTextFromElement(pageTitle), "Droppable", "Page is not loaded properly");
     }
 
     public void pickAndDropElement() {
+        logInfo(INFO_STEP, "Pick and drop element flow.");
         elementMethods.scrollPageDown("300");
         String initialTargetText = elementMethods.getTextFromElement(droppableElement); //am salvat textul de pe element intr-un string;
+        logInfo(INFO_STEP, "Initial target text is: " + initialTargetText);
         elementMethods.pickAndDropElement(draggableElement,droppableElement);
-        //elementMethods.setWait(1000L);
+        String finalTargetText = elementMethods.getTextFromElement(droppableElement);
+        logInfo(INFO_STEP, "Validate that element was dropped successfully -> final target text is: " + finalTargetText);
         Assert.assertNotEquals(elementMethods.getTextFromElement(droppableElement), initialTargetText,
                 "Initial text is the same with actual text after element dropped");
         System.out.println("Initial text is: " + initialTargetText + " Text after successful drop: " +
